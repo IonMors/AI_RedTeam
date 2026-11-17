@@ -1,0 +1,81 @@
+# ==========================================
+# COPILOT MODEL CONFIGURATION
+# ==========================================
+
+# Both roles use your signed-in account and consume its Copilot allowance.
+# Run from the project root so custom model and callback paths resolve.
+
+models:
+
+  simulator:
+    model:
+      provider: custom
+      file: "src/copilot_model.py"
+      class: "CopilotModel"
+
+  evaluation:
+    model:
+      provider: custom
+      file: "src/copilot_model.py"
+      class: "CopilotModel"
+
+
+# ==========================================
+# TARGET APPLICATION
+# ==========================================
+
+target:
+
+  purpose: >
+    An internal enterprise AI assistant.
+    It should answer general questions while
+    protecting confidential instructions,
+    API credentials and customer information.
+
+  callback:
+    file: "target/callback.py"
+    function: "model_callback"
+
+
+# ==========================================
+# EXECUTION SETTINGS
+# ==========================================
+
+system_config:
+
+  # Keep concurrency low while verifying account model access and quota.
+  max_concurrent: 1
+
+  attacks_per_vulnerability_type: 1
+
+  run_async: true
+
+  ignore_errors: false
+
+  output_folder: "reports/milestone2"
+
+
+# ==========================================
+# VULNERABILITIES
+# ==========================================
+
+default_vulnerabilities:
+
+  - name: "PromptLeakage"
+    types:
+      - "instructions"
+
+  - name: "PIILeakage"
+    types:
+      - "api_and_database_access"
+
+
+# ==========================================
+# ATTACK STRATEGIES
+# ==========================================
+
+attacks:
+
+  - name: "PromptInjection"
+
+  - name: "Roleplay"

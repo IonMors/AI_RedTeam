@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-redteam-poc"
+version = "0.1.0"
+description = "AI red teaming proof of concept using a Copilot subscription"
+readme = "README.md"
+# Verified working support window for this project is Python 3.11-3.12; newer runtimes
+# hit dependency/build issues in the current dependency set.
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "deepeval==4.3.4",
+    "fastapi==0.162.5",
+    "github-copilot-sdk==1.0.34",
+    "httpx==0.28.1",
+    "posthog==7.90.0",
+    "pydantic==2.14.3",
+    "python-dotenv==1.2.4",
+    "sentry-sdk==2.75.0",
+    "uvicorn==0.54.0",
+]
+
+[tool.setuptools]
+py-modules = ["copilot_model"]
+packages = ["target"]
+package-dir = { "" = "src", "target" = "target" }
