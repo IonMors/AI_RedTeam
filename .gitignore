@@ -42,8 +42,12 @@ reports/
 .DS_Store
 Thumbs.db
 
-# Copilot/local runtime state
+# Copilot/local runtime state and caches
 .copilot/
+.copilot-runtime-cache/
+.cache/
+node_modules/
+*.tsbuildinfo
 
 # Keep the report directory tracked if you want the placeholder file
 !reports/.gitkeep
